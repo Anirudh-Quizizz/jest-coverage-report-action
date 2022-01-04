@@ -29,17 +29,24 @@ export const createReport = (
     const { workingDirectory, customTitle } = options;
 
     const { errors, data } = dataCollector.get();
+    console.log(errors, data);
     const [headReport, baseReport] = data;
+    console.log(headReport, baseReport);
     const formattedErrors = formatErrors(errors);
+    console.log(formattedErrors);
 
     const formattedThresholdResults = formatThresholdResults(thresholdResults);
+    console.log(formattedThresholdResults);
     const coverage = formatCoverage(headReport, baseReport, undefined);
+    console.log(coverage);
     const runReport: TestRunReport = {
         title: i18n(headReport.success ? 'testsSuccess' : 'testsFail'),
         summary: getTestRunSummary(headReport),
         failures: getFailureDetails(headReport),
     };
+    console.log(runReport);
     const formattedReport = formatRunReport(runReport);
+    console.log(formattedReport);
     return {
         text: insertArgs(template, {
             body: [
